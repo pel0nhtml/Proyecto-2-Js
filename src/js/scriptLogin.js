@@ -2,20 +2,24 @@
 const mail = document.getElementById("mail")
 const passwordI = document.getElementById("passwordI")
 const btnIden = document.getElementById("btnIden")
-//////////////////////////////////////////////////////////////////////////////////////////////////////////7
 
-//const btnRegistr = document.getElementById("btnRegistr")
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////7
-const valoresScRegis =JSON.parse(localStorage.getItem("userinfo")||[])
-console.log(valoresScRegis)
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+const listaScRegis = JSON.parse(localStorage.getItem("userInfo")||[])
+console.log(listaScRegis)
 
 btnIden.addEventListener("click", function () {
-    for (let index = 0; index < usersList.length; index++) {
-        if (usersList[index].username === valoresScRegis.value && usersList[index].password === passwordI.value) {
-            alert ("Bienvenido")
+    console.log(45);
+    for (let index = 0; index <listaScRegis.length; index++) {
+        if (listaScRegis[index].password1==passwordI.value && listaScRegis[index].mail==mail.value) {
+            
+
+            window.location.href="indexMainPage.html"
+            
         } else {
-           alert ("Username or Password wrong")
+           
         }
     }
 })
