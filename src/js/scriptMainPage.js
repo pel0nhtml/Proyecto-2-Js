@@ -1,8 +1,13 @@
 const container = document.getElementById("containerT");
-const listaTarea = document.getElementById("listaTarea");
+const tareaEvent = document.getElementById ("tareaEvent")
+const textM = document.getElementById("listaTarea");
 const listaEvento =document.getElementById("listaEvento");
 const selectah = document.getElementById("selectah");
 const DateR = document.getElementById("DateR");
+
+
+let taskLista= []
+let eventLista= []
 
 btnSave.addEventListener("click", function () {
     const selection = selectah.value
@@ -19,10 +24,21 @@ btnSave.addEventListener("click", function () {
         containerN.appendChild(pTag);
         containerN.appendChild(btnD);
         containerN.appendChild(btnE);
-        pTag.innerHTML = textM.value +" "+ DateR.value;
+       
+    //////////////////////
+        let tsk = tareaEvent.value +" "+ DateR.value;
+        pTag.innerHTML = tsk
+    /////////////////////
+       
         btnD.innerHTML = "Delete Tasks"; 
         btnE.innerHTML = "Edit";
         listaTarea.appendChild(containerN);
+
+
+    ////////////////////
+        taskLista.push (tsk);
+        localStorage.setItem ("taskInfo", JSON.stringify(taskLista))
+    ///////////////////
 
         if (btnD.addEventListener("click", function () {
             listaTarea.removeChild(containerN);
@@ -41,11 +57,14 @@ btnSave.addEventListener("click", function () {
             pTag.contentEditable = false;
             pTag.style.backgroundColor = "White";
             pTag.style.color = "Black";
-       /////////////////////////////////////////////////////////////////////////////////////////////////////
+
        
-        })){}/////////////////Eventos///////////////////////////////
+              
+            /////////////////////////////////////////////////////////////////////////////////////////////////////
+        })){} /////////////////Eventos///////////////////////////////
         })){}
-     /////////////////////////////////////////////////////////////////////////////////////////////////////////////   
+       ///////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+
     } else { if (selection === "Event") {
         const containerN =document.createElement("div")
         const pTag = document.createElement("p");
@@ -55,11 +74,22 @@ btnSave.addEventListener("click", function () {
         containerN.appendChild(pTag);
         containerN.appendChild(btnD);
         containerN.appendChild(btnE);
-        pTag.innerHTML = textM.value +" "+ DateR.value;
+        
+        ////////////////
+        let evnt = tareaEvent.value +" "+ DateR.value;
+        pTag.innerHTML = evnt
+        ////////////////
+        
         btnD.innerHTML = "Delete Tasks";
         btnE.innerHTML = "Edit";
-        listaEvento.appendChild(containerN);
+        listaEvento.appendChild(containerN)
 
+        ///////////////
+
+        taskLista.push (evnt);
+        localStorage.setItem ("eventInfo", JSON.stringify(eventLista))
+
+        //////////////
         if (btnD.addEventListener("click", function () {
             listaEvento.removeChild(containerN);
             alert("Deleted Succesfully");
