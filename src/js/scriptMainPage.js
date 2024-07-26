@@ -50,16 +50,10 @@ btnSave.addEventListener("click", function () {
             containerN.appendChild(btnA);
             btnA.innerHTML = "Apply";
             pTag.contentEditable = true;
-            pTag.style.backgroundColor = "#666";
-            pTag.style.color = "white";
         
         if (btnA.addEventListener("click", function () {
             pTag.contentEditable = false;
-            pTag.style.backgroundColor = "White";
-            pTag.style.color = "Black";
 
-       
-              
             /////////////////////////////////////////////////////////////////////////////////////////////////////
         })){} /////////////////Eventos///////////////////////////////
         })){}
@@ -74,7 +68,7 @@ btnSave.addEventListener("click", function () {
         containerN.appendChild(pTag);
         containerN.appendChild(btnD);
         containerN.appendChild(btnE);
-        
+
         ////////////////
         let evnt = tareaEvent.value +" "+ DateR.value;
         pTag.innerHTML = evnt
@@ -85,11 +79,10 @@ btnSave.addEventListener("click", function () {
         listaEvento.appendChild(containerN)
 
         ///////////////
-
         taskLista.push (evnt);
         localStorage.setItem ("eventInfo", JSON.stringify(eventLista))
-
         //////////////
+
         if (btnD.addEventListener("click", function () {
             listaEvento.removeChild(containerN);
             alert("Deleted Succesfully");
@@ -100,13 +93,10 @@ btnSave.addEventListener("click", function () {
             containerN.appendChild(btnA);
             btnA.innerHTML = "Apply";
             pTag.contentEditable = true;
-            pTag.style.backgroundColor = "#666";
-            pTag.style.color = "white";
         
         if (btnA.addEventListener("click", function () {
             pTag.contentEditable = false;
-            pTag.style.backgroundColor = "White";
-            pTag.style.color = "Black";
+            
         })){}
         })){}
     } }})
