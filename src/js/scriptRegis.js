@@ -8,7 +8,7 @@ const btnRegi = document.getElementById("btnRegi")
 const btnIniSes = document.getElementById("btnIniSes")
 
 
-///////////////////////i///////////////////////////////////
+//////////////////////////////////////////////////////////
 let usersList = []
 
 btnRegi.addEventListener("click", function () {

@@ -9,13 +9,9 @@ const btnSave = document.getElementById("btnSave");
 let taskLista = JSON.parse(localStorage.getItem("taskInfo")) || [];
 let eventLista = JSON.parse(localStorage.getItem("eventInfo")) || [];
 
-///Función para renderizar tareas y eventos al cargar la página///
-function renderList() {
-    listaTarea.innerHTML = "<h2>Tareas</h2>";
-    listaEvento.innerHTML = "<h2>Eventos</h2>";
-    taskLista. forEach ((tsk, index) => renderItem (tsk, index, "Task"));
-    eventLista. forEach ((evnt, index) => renderItem (evnt, index, "Event"));
-}
+// Renderizar las listas al cargar la página
+taskLista.forEach((tsk, index) => renderItem(tsk, index, "Task"));
+eventLista.forEach((evnt, index) => renderItem(evnt, index, "Event"));
 
 ///Función para crear y mostrar un nuevo ítem (tarea o evento) en el DOM///
 function renderItem(item, index, type) {
@@ -49,15 +45,14 @@ function renderItem(item, index, type) {
     }
 }
 
+// Evento para guardar una nueva tarea o evento
 btnSave.addEventListener("click", function () {
     const selection = selectah.value;
     const taskEventValue = tareaEvent.value + " " + DateR.value;
-////////////////////////////tareas///////////////////////////////////////////////////////////////////////////////
     if (selection === "Task") {
         taskLista.push(taskEventValue);
         localStorage.setItem("taskInfo", JSON.stringify(taskLista));
         renderItem(taskEventValue, taskLista.length - 1, "Task");
-////////////////////////////eventos///////////////////////////////////////////////////////////////////////////////
     } else if (selection === "Event") {
         eventLista.push(taskEventValue);
         localStorage.setItem("eventInfo", JSON.stringify(eventLista));
@@ -78,19 +73,19 @@ function deleteItem(index, type, element) {
     }
 }
 
- ///Función para editar un ítem, guardando los cambios en la lista y en el local storage///
-  function editItem(index, type, pTag) {
+///Función para editar un ítem, guardando los cambios en la lista y en el local storage///
+function editItem(index, type, pTag) {
     const btnA = document.createElement("button");
     btnA.innerHTML = "Apply";
     pTag.contentEditable = true;
-
     pTag.appendChild(btnA);
 
     btnA.addEventListener("click", function () {
         pTag.contentEditable = false;
-        const updatedValue = pTag.innerText;
 
-        ///Eliminar el botón "Apply" antes de guardar///
+        const updatedValue = pTag.textContent.trim();
+        ///textContent y trim en vez de innerText///
+
         pTag.removeChild(btnA);
 
         if (type === "Task") {
@@ -102,6 +97,3 @@ function deleteItem(index, type, element) {
         }
     });
 }
-
-///Renderizar la lista al cargar la página///
-renderList();
