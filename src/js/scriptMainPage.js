@@ -25,7 +25,7 @@ function renderItem(item, index, type) {
     containerN.appendChild(btnD);
     containerN.appendChild(btnE);
 
-    pTag.innerHTML = item;
+    pTag.textContent = item;
 
     btnD.innerHTML = "Delete";
     btnE.innerHTML = "Edit";
@@ -80,12 +80,11 @@ function editItem(index, type, pTag) {
     pTag.appendChild(btnA);
 
     btnA.addEventListener("click", function () {
+        // Eliminar el botón "Apply" antes de guardar el contenido
+        btnA.remove();
         pTag.contentEditable = false;
 
         const updatedValue = pTag.textContent.trim();
-        ///Talvez: textContent y trim en vez de innerText///
-
-        pTag.removeChild(btnA);
 
         if (type === "Task") {
             taskLista[index] = updatedValue;
