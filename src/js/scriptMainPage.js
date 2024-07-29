@@ -78,8 +78,8 @@ function deleteItem(index, type, element) {
     }
 }
 
-///Función para editar un ítem, guardando los cambios en la lista y en el local storage///
-function editItem(index, type, pTag) {
+ ///Función para editar un ítem, guardando los cambios en la lista y en el local storage///
+  function editItem(index, type, pTag) {
     const btnA = document.createElement("button");
     btnA.innerHTML = "Apply";
     pTag.contentEditable = true;
