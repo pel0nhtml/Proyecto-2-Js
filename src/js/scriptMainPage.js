@@ -45,7 +45,6 @@ function renderItem(item, index, type) {
     }
 }
 
-// Evento para guardar una nueva tarea o evento
 btnSave.addEventListener("click", function () {
     const selection = selectah.value;
     const taskEventValue = tareaEvent.value + " " + DateR.value;
@@ -84,7 +83,7 @@ function editItem(index, type, pTag) {
         pTag.contentEditable = false;
 
         const updatedValue = pTag.textContent.trim();
-        ///textContent y trim en vez de innerText///
+        ///Talvez: textContent y trim en vez de innerText///
 
         pTag.removeChild(btnA);
 
