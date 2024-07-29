@@ -4,12 +4,13 @@ const listaTarea = document.getElementById("listaTarea");
 const listaEvento = document.getElementById("listaEvento");
 const selectah = document.getElementById("selectah");
 const DateR = document.getElementById("DateR");
+const priority = document.getElementById("priority");
 const btnSave = document.getElementById("btnSave");
 
 let taskLista = JSON.parse(localStorage.getItem("taskInfo")) || [];
 let eventLista = JSON.parse(localStorage.getItem("eventInfo")) || [];
 
-// Renderizar las listas al cargar la página
+// Función para renderizar las listas al cargar la página
 taskLista.forEach((tsk, index) => renderItem(tsk, index, "Task"));
 eventLista.forEach((evnt, index) => renderItem(evnt, index, "Event"));
 
@@ -25,29 +26,49 @@ function renderItem(item, index, type) {
     containerN.appendChild(btnD);
     containerN.appendChild(btnE);
 
-    pTag.textContent = item;
+    pTag.textContent = `${item.text} (${item.priority})`;
 
     btnD.innerHTML = "Delete";
     btnE.innerHTML = "Edit";
 
     if (type === "Task") {
-        listaTarea.appendChild(containerN);
-        ///Eliminar tarea///
+        insertSorted(listaTarea, containerN, item.priority);
         btnD.addEventListener("click", () => deleteItem(index, "Task", containerN));
-        ///Editar tarea///
         btnE.addEventListener("click", () => editItem(index, "Task", pTag));
     } else {
-        listaEvento.appendChild(containerN);
-        ///Eliminar evento///
+        insertSorted(listaEvento, containerN, item.priority);
         btnD.addEventListener("click", () => deleteItem(index, "Event", containerN));
-        ///Editar evento///
         btnE.addEventListener("click", () => editItem(index, "Event", pTag));
     }
 }
 
+/// Función para insertar ítem en el DOM en orden de prioridad ///
+function insertSorted(container, newItem, priority) {
+    const children = Array.from(container.children);
+    for (let i = 1; i < children.length; i++) {
+        const itemPriority = children[i].querySelector("p").textContent.split(" (")[1].replace(")", "").trim();
+        if (priorityOrder(priority) < priorityOrder(itemPriority)) {
+            container.insertBefore(newItem, children[i]);
+            return;
+        }
+    }
+    container.appendChild(newItem);
+}
+
+/// Función para determinar el orden de prioridad ///
+function priorityOrder(priority) {
+    if (priority === "High") return 1;
+    if (priority === "Medium") return 2;
+    if (priority === "Low") return 3;
+}
+
 btnSave.addEventListener("click", function () {
     const selection = selectah.value;
-    const taskEventValue = tareaEvent.value + " " + DateR.value;
+    const taskEventValue = {
+        text: `${tareaEvent.value} ${DateR.value}`,
+        priority: priority.value
+    };
+
     if (selection === "Task") {
         taskLista.push(taskEventValue);
         localStorage.setItem("taskInfo", JSON.stringify(taskLista));
@@ -59,7 +80,7 @@ btnSave.addEventListener("click", function () {
     }
 });
 
-///Función para eliminar un ítem de la lista y del DOM, actualizando también el local storage///
+/// Función para eliminar un ítem de la lista y del DOM, actualizando también el local storage ///
 function deleteItem(index, type, element) {
     if (type === "Task") {
         taskLista.splice(index, 1);
@@ -72,7 +93,7 @@ function deleteItem(index, type, element) {
     }
 }
 
-///Función para editar un ítem, guardando los cambios en la lista y en el local storage///
+/// Función para editar un ítem, guardando los cambios en la lista y en el local storage ///
 function editItem(index, type, pTag) {
     const btnA = document.createElement("button");
     btnA.innerHTML = "Apply";
@@ -80,18 +101,25 @@ function editItem(index, type, pTag) {
     pTag.appendChild(btnA);
 
     btnA.addEventListener("click", function () {
-        // Eliminar el botón "Apply" antes de guardar el contenido
-        btnA.remove();
         pTag.contentEditable = false;
 
-        const updatedValue = pTag.textContent.trim();
+        const updatedValue = pTag.textContent.split(" (")[0].trim();
+        const updatedPriority = pTag.textContent.split(" (")[1].replace(")", "").trim();
+
+        pTag.removeChild(btnA);
 
         if (type === "Task") {
-            taskLista[index] = updatedValue;
+            taskLista[index].text = updatedValue;
+            taskLista[index].priority = updatedPriority;
             localStorage.setItem("taskInfo", JSON.stringify(taskLista));
+            listaTarea.innerHTML = "<h2>Tareas</h2>";
+            taskLista.forEach((tsk, idx) => renderItem(tsk, idx, "Task"));
         } else {
-            eventLista[index] = updatedValue;
+            eventLista[index].text = updatedValue;
+            eventLista[index].priority = updatedPriority;
             localStorage.setItem("eventInfo", JSON.stringify(eventLista));
+            listaEvento.innerHTML = "<h2>Eventos</h2>";
+            eventLista.forEach((evnt, idx) => renderItem(evnt, idx, "Event"));
         }
     });
 }
