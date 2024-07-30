@@ -10,12 +10,12 @@ const btnSave = document.getElementById("btnSave");
 let taskLista = JSON.parse(localStorage.getItem("taskInfo")) || [];
 let eventLista = JSON.parse(localStorage.getItem("eventInfo")) || [];
 
-// Función para renderizar las listas al cargar la página
-taskLista.forEach((tsk, index) => renderItem(tsk, index, "Task"));
-eventLista.forEach((evnt, index) => renderItem(evnt, index, "Event"));
+//Renderizar las listas al cargar la página//
+taskLista.forEach((tsk, index) => addItemToDOM(tsk, index, "Task"));
+eventLista.forEach((evnt, index) => addItemToDOM(evnt, index, "Event"));
 
-///Función para crear y mostrar un nuevo ítem (tarea o evento) en el DOM///
-function renderItem(item, index, type) {
+///Función para agregar ítem al DOM///
+function addItemToDOM(item, index, type) {
     const containerN = document.createElement("div");
     const pTag = document.createElement("p");
     pTag.id = "TextoP";
@@ -42,7 +42,7 @@ function renderItem(item, index, type) {
     }
 }
 
-/// Función para insertar ítem en el DOM en orden de prioridad ///
+///Función para insertar ítem en el DOM en orden de prioridad///
 function insertSorted(container, newItem, priority) {
     const children = Array.from(container.children);
     for (let i = 1; i < children.length; i++) {
@@ -55,13 +55,14 @@ function insertSorted(container, newItem, priority) {
     container.appendChild(newItem);
 }
 
-/// Función para determinar el orden de prioridad ///
+///Función para determinar el orden de prioridad///
 function priorityOrder(priority) {
     if (priority === "High") return 1;
     if (priority === "Medium") return 2;
     if (priority === "Low") return 3;
 }
 
+///Agregar nuevo ítem (tarea o evento) al hacer clic en el botón Guardar///
 btnSave.addEventListener("click", function () {
     const selection = selectah.value;
     const taskEventValue = {
@@ -72,15 +73,15 @@ btnSave.addEventListener("click", function () {
     if (selection === "Task") {
         taskLista.push(taskEventValue);
         localStorage.setItem("taskInfo", JSON.stringify(taskLista));
-        renderItem(taskEventValue, taskLista.length - 1, "Task");
+        addItemToDOM(taskEventValue, taskLista.length - 1, "Task");
     } else if (selection === "Event") {
         eventLista.push(taskEventValue);
         localStorage.setItem("eventInfo", JSON.stringify(eventLista));
-        renderItem(taskEventValue, eventLista.length - 1, "Event");
+        addItemToDOM(taskEventValue, eventLista.length - 1, "Event");
     }
 });
 
-/// Función para eliminar un ítem de la lista y del DOM, actualizando también el local storage ///
+///Función para eliminar un ítem de la lista y del DOM, actualizando también el local storage///
 function deleteItem(index, type, element) {
     if (type === "Task") {
         taskLista.splice(index, 1);
@@ -93,7 +94,7 @@ function deleteItem(index, type, element) {
     }
 }
 
-/// Función para editar un ítem, guardando los cambios en la lista y en el local storage ///
+///Función para editar un ítem, guardando los cambios en la lista y en el local storage///
 function editItem(index, type, pTag) {
     const btnA = document.createElement("button");
     btnA.innerHTML = "Apply";
@@ -112,14 +113,23 @@ function editItem(index, type, pTag) {
             taskLista[index].text = updatedValue;
             taskLista[index].priority = updatedPriority;
             localStorage.setItem("taskInfo", JSON.stringify(taskLista));
-            listaTarea.innerHTML = "<h2>Tareas</h2>";
-            taskLista.forEach((tsk, idx) => renderItem(tsk, idx, "Task"));
+            refreshList("Task");
         } else {
             eventLista[index].text = updatedValue;
             eventLista[index].priority = updatedPriority;
             localStorage.setItem("eventInfo", JSON.stringify(eventLista));
-            listaEvento.innerHTML = "<h2>Eventos</h2>";
-            eventLista.forEach((evnt, idx) => renderItem(evnt, idx, "Event"));
+            refreshList("Event");
         }
     });
+}
+
+///Función para refrescar la lista después de editar///
+function refreshList(type) {
+    if (type === "Task") {
+        listaTarea.innerHTML = "<h2>Tareas</h2>";
+        taskLista.forEach((tsk, index) => addItemToDOM(tsk, index, "Task"));
+    } else {
+        listaEvento.innerHTML = "<h2>Eventos</h2>";
+        eventLista.forEach((evnt, index) => addItemToDOM(evnt, index, "Event"));
+    }
 }
