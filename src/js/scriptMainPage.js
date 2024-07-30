@@ -10,7 +10,7 @@ const btnSave = document.getElementById("btnSave");
 let taskLista = JSON.parse(localStorage.getItem("taskInfo")) || [];
 let eventLista = JSON.parse(localStorage.getItem("eventInfo")) || [];
 
-// Renderizar las listas al cargar la página
+// Render // 
 taskLista.forEach((tsk, index) => createTaskEventElement(tsk, index, "Task"));
 eventLista.forEach((evnt, index) => createTaskEventElement(evnt, index, "Event"));
 
@@ -42,6 +42,7 @@ function createTaskEventElement(item, index, type) {
     }
 }
 
+//InsertSorted//
 ///Función para insertar ítem en el DOM en orden de prioridad///
 function insertSorted(container, newItem, priority) {
     const children = Array.from(container.children);
@@ -55,6 +56,7 @@ function insertSorted(container, newItem, priority) {
     container.appendChild(newItem);
 }
 
+
 ///Función para determinar el orden de prioridad///
 function priorityOrder(priority) {
     if (priority === "High") return 1;
@@ -62,7 +64,8 @@ function priorityOrder(priority) {
     if (priority === "Low") return 3;
 }
 
-///Agregar nuevo ítem (tarea o evento) al hacer clic en el botón Guardar ///
+/// Agregar nuevo ítem (tarea o evento) al hacer clic en el botón Guardar ///
+//Sin el addItemToDOM aplicando el push() 
 btnSave.addEventListener("click", function () {
     const selection = selectah.value;
     const taskEventValue = {
@@ -97,6 +100,7 @@ function deleteItem(index, type, element) {
 }
 
 /// Función para editar un ítem, guardando los cambios en la lista y en el local storage ///
+//Parte Problematica (apply en la consola)//
 function editItem(index, type, pTag) {
     const btnA = document.createElement("button");
     btnA.innerHTML = "Apply";
