@@ -10,12 +10,12 @@ const btnSave = document.getElementById("btnSave");
 let taskLista = JSON.parse(localStorage.getItem("taskInfo")) || [];
 let eventLista = JSON.parse(localStorage.getItem("eventInfo")) || [];
 
-//Renderizar las listas al cargar la página//
-taskLista.forEach((tsk, index) => addItemToDOM(tsk, index, "Task"));
-eventLista.forEach((evnt, index) => addItemToDOM(evnt, index, "Event"));
+// Renderizar las listas al cargar la página
+taskLista.forEach((tsk, index) => createTaskEventElement(tsk, index, "Task"));
+eventLista.forEach((evnt, index) => createTaskEventElement(evnt, index, "Event"));
 
-///Función para agregar ítem al DOM///
-function addItemToDOM(item, index, type) {
+///Función para crear el elemento de tarea/evento en el DOM////
+function createTaskEventElement(item, index, type) {
     const containerN = document.createElement("div");
     const pTag = document.createElement("p");
     pTag.id = "TextoP";
@@ -62,7 +62,7 @@ function priorityOrder(priority) {
     if (priority === "Low") return 3;
 }
 
-///Agregar nuevo ítem (tarea o evento) al hacer clic en el botón Guardar///
+///Agregar nuevo ítem (tarea o evento) al hacer clic en el botón Guardar ///
 btnSave.addEventListener("click", function () {
     const selection = selectah.value;
     const taskEventValue = {
@@ -71,17 +71,19 @@ btnSave.addEventListener("click", function () {
     };
 
     if (selection === "Task") {
-        taskLista.push(taskEventValue);
+        taskLista.push(taskEventValue); // Agregar a la lista de tareas
         localStorage.setItem("taskInfo", JSON.stringify(taskLista));
-        addItemToDOM(taskEventValue, taskLista.length - 1, "Task");
+        // Crear y agregar directamente al DOM
+        createTaskEventElement(taskEventValue, taskLista.length - 1, "Task");
     } else if (selection === "Event") {
-        eventLista.push(taskEventValue);
+        eventLista.push(taskEventValue); // Agregar a la lista de eventos
         localStorage.setItem("eventInfo", JSON.stringify(eventLista));
-        addItemToDOM(taskEventValue, eventLista.length - 1, "Event");
+        // Crear y agregar directamente al DOM
+        createTaskEventElement(taskEventValue, eventLista.length - 1, "Event");
     }
 });
 
-///Función para eliminar un ítem de la lista y del DOM, actualizando también el local storage///
+/// Función para eliminar un ítem de la lista y del DOM, actualizando también el local storage ///
 function deleteItem(index, type, element) {
     if (type === "Task") {
         taskLista.splice(index, 1);
@@ -94,7 +96,7 @@ function deleteItem(index, type, element) {
     }
 }
 
-///Función para editar un ítem, guardando los cambios en la lista y en el local storage///
+/// Función para editar un ítem, guardando los cambios en la lista y en el local storage ///
 function editItem(index, type, pTag) {
     const btnA = document.createElement("button");
     btnA.innerHTML = "Apply";
@@ -123,13 +125,13 @@ function editItem(index, type, pTag) {
     });
 }
 
-///Función para refrescar la lista después de editar///
+/// Función para refrescar la lista después de editar ///
 function refreshList(type) {
     if (type === "Task") {
         listaTarea.innerHTML = "<h2>Tareas</h2>";
-        taskLista.forEach((tsk, index) => addItemToDOM(tsk, index, "Task"));
+        taskLista.forEach((tsk, index) => createTaskEventElement(tsk, index, "Task"));
     } else {
         listaEvento.innerHTML = "<h2>Eventos</h2>";
-        eventLista.forEach((evnt, index) => addItemToDOM(evnt, index, "Event"));
+        eventLista.forEach((evnt, index) => createTaskEventElement(evnt, index, "Event"));
     }
 }
