@@ -3,29 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Main Page 3</title>
     <!--CSS-->
     <link rel="stylesheet" href="/Proyecto-2-Js/src/css/mainpage.css">
-    <title>Main Page 3</title>
 </head>
 
 <body>
-
+<div class="grid-layout">
 <div class="containerTE" style="background-color: red;">
     <div class="rowTE">
-        <div class="col-md-4">
             <p>Tareas y Eventos</p>
             <input id= "tareaEvent" type="text">
     </div>
   </div>
-</div>
 
-<div class="conteinerD" style="background-color: blue;">
+<div class="containerD" style="background-color: blue;">
     <div class="rowD">
-        <div class="col-md-4">
             <p>Fecha</p>
             <input id= "DateR" type="text">
     </div>
-  </div>
 </div>
 
   <br>
@@ -34,8 +30,7 @@
   
 <!--Selector de Tarea o Evento-->
 <div class="containerSelector" style="background-color: green;">
-  <div class="rowSelector">
-    <div class="col-md-4">
+  <div class="rowSelector1">
         <select id="selectah">
             <option value="Task">Tarea</option>
             <option value="Event">Evento</option>
@@ -47,8 +42,7 @@
 <!--Selector de Prioridad-->
    
 <div class="containerPriori" style="background-color: yellow;">
-    <div class="rowP">
-        <div class="col-md-4">
+    <div class="rowSelector2">
             <select id="priority">
                 <option value="High">Alta</option>
                 <option value="Medium">Media</option>
@@ -56,30 +50,28 @@
             </select>
         </div>
     </div>
-</div>
 
-<div class="containerBtnS">
+<div class="containerBtnS" style="background-color: purple;">
     <div class="rowS">
-        <div class="col-md-">
             <button id= "btnSave"> Guardar</button>
       </div>
    </div>
-</div>
   <br>
   <br>
 
-    <div id="containerT">
+    <div class="containerT" style="background-color: blueviolet;">
         <div id="listaTarea">
             <h2>Tareas</h2>
         </div>
+    </div>
     <!--------------------------->
+    <div class="containerE" style="background-color: orange;">
         <div id="listaEvento">
             <h2>Eventos</h2>
         </div>
     </div>
-
     
-   
+   </div><!--Gridlayout-->
 <script src="../Proyecto-2-Js/src/js/scriptMainPage.js"></script>
 </body>
 </html>
