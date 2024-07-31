@@ -7,14 +7,15 @@ const DateR = document.getElementById("DateR");
 const priority = document.getElementById("priority");
 const btnSave = document.getElementById("btnSave");
 
+/// Lista de tareas y eventos en el LocalStorage ///
 let taskLista = JSON.parse(localStorage.getItem("taskInfo")) || [];
 let eventLista = JSON.parse(localStorage.getItem("eventInfo")) || [];
 
-// Render // 
+// Render //
 taskLista.forEach((tsk, index) => createTaskEventElement(tsk, index, "Task"));
 eventLista.forEach((evnt, index) => createTaskEventElement(evnt, index, "Event"));
 
-///Función para crear el elemento de tarea/evento en el DOM////
+/// Función para crear el elemento de tarea/evento en el DOM ///
 function createTaskEventElement(item, index, type) {
     const containerN = document.createElement("div");
     const pTag = document.createElement("p");
@@ -42,8 +43,8 @@ function createTaskEventElement(item, index, type) {
     }
 }
 
-//InsertSorted//
-///Función para insertar ítem en el DOM en orden de prioridad///
+// InsertSorted //
+// Función para insertar ítem en el DOM en orden de prioridad ///
 function insertSorted(container, newItem, priority) {
     const children = Array.from(container.children);
     for (let i = 1; i < children.length; i++) {
@@ -56,8 +57,7 @@ function insertSorted(container, newItem, priority) {
     container.appendChild(newItem);
 }
 
-
-///Función para determinar el orden de prioridad///
+/// Función para determinar el orden de prioridad ///
 function priorityOrder(priority) {
     if (priority === "High") return 1;
     if (priority === "Medium") return 2;
@@ -65,7 +65,7 @@ function priorityOrder(priority) {
 }
 
 /// Agregar nuevo ítem (tarea o evento) al hacer clic en el botón Guardar ///
-//Sin el addItemToDOM aplicando el push() 
+// Sin el addItemToDOM aplicando el push() 
 btnSave.addEventListener("click", function () {
     const selection = selectah.value;
     const taskEventValue = {
@@ -74,19 +74,19 @@ btnSave.addEventListener("click", function () {
     };
 
     if (selection === "Task") {
-        taskLista.push(taskEventValue); // Agregar a la lista de tareas
+        taskLista.push(taskEventValue); //Agregar a la lista de tareas
         localStorage.setItem("taskInfo", JSON.stringify(taskLista));
-        // Crear y agregar directamente al DOM
+        //Crear y agregar directamente al DOM
         createTaskEventElement(taskEventValue, taskLista.length - 1, "Task");
     } else if (selection === "Event") {
-        eventLista.push(taskEventValue); // Agregar a la lista de eventos
+        eventLista.push(taskEventValue); //Agregar a la lista de eventos
         localStorage.setItem("eventInfo", JSON.stringify(eventLista));
-        // Crear y agregar directamente al DOM
+        //Crear y agregar directamente al DOM
         createTaskEventElement(taskEventValue, eventLista.length - 1, "Event");
     }
 });
 
-/// Función para eliminar un ítem de la lista y del DOM, actualizando también el local storage ///
+/// Función eliminar un ítem de la lista y DOM, actualizando también el local storage ///
 function deleteItem(index, type, element) {
     if (type === "Task") {
         taskLista.splice(index, 1);
@@ -100,20 +100,20 @@ function deleteItem(index, type, element) {
 }
 
 /// Función para editar un ítem, guardando los cambios en la lista y en el local storage ///
-//Parte Problematica (apply en la consola)//
 function editItem(index, type, pTag) {
     const btnA = document.createElement("button");
     btnA.innerHTML = "Apply";
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+    btnA.id = "applyButton"; // Agregar un ID para el botón Apply
     pTag.contentEditable = true;
-    pTag.appendChild(btnA);
+    pTag.parentNode.appendChild(btnA); // Cambiar el lugar donde se añade el botón Apply
 
     btnA.addEventListener("click", function () {
         pTag.contentEditable = false;
-
+        pTag.parentNode.removeChild(btnA); // Remover el botón Apply después de hacer clic
+///////////////////////////////////////////////////////////////////////////////////////////////////
         const updatedValue = pTag.textContent.split(" (")[0].trim();
         const updatedPriority = pTag.textContent.split(" (")[1].replace(")", "").trim();
-
-        pTag.removeChild(btnA);
 
         if (type === "Task") {
             taskLista[index].text = updatedValue;
