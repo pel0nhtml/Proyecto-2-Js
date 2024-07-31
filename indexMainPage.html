@@ -10,68 +10,65 @@
 
 <body>
 <div class="grid-layout">
-<div class="containerTE" style="background-color: red;">
-    <div class="rowTE">
-            <p>Tareas y Eventos</p>
-            <input id= "tareaEvent" type="text">
-    </div>
-  </div>
 
-<div class="containerD" style="background-color: blue;">
-    <div class="rowD">
-            <p>Fecha</p>
-            <input id= "DateR" type="text">
-    </div>
+            <div class="containerTE" style="background-color: red;">
+                <div class="rowTE">
+                        <p>Tareas y Eventos</p>
+                        <input id= "tareaEvent" type="text">
+                </div>
+            </div>
+
+            <div class="containerD" style="background-color: blue;">
+                <div class="rowD">
+                        <p>Fecha</p>
+                        <input id= "DateR" type="text">
+                </div>
+            </div>
+
+            <!--Selector de Tarea o Evento-->
+            <div class="containerSelector" style="background-color: green;">
+            <div class="rowSelector1">
+                    <select id="selectah">
+                        <option value="Task">Tarea</option>
+                        <option value="Event">Evento</option>
+                    </select>
+                </div>
+            </div>
+            </div>
+
+            <!--Selector de Prioridad-->
+            
+            <div class="containerPriori" style="background-color: yellow;">
+                <div class="rowSelector2">
+                        <select id="priority">
+                            <option value="High">Alta</option>
+                            <option value="Medium">Media</option>
+                            <option value="Low">Baja</option>
+                        </select>
+                    </div>
+                </div>
+
+            <div class="containerBtnS" style="background-color: purple;">
+                <div class="rowS">
+                        <button id= "btnSave"> Guardar</button>
+                </div>
+            </div>
+
+                <div class="containerT" style="background-color: blueviolet;">
+                    <div id="listaTarea">
+                        <h2>Tareas</h2>
+                    </div>
+                </div>
+                <!--------------------------->
+                <div class="containerE" style="background-color: orange;">
+                    <div id="listaEvento">
+                        <h2>Eventos</h2>
+                    </div>
+                </div>
+                
+
 </div>
-
-  <br>
-  <br>
-
-  
-<!--Selector de Tarea o Evento-->
-<div class="containerSelector" style="background-color: green;">
-  <div class="rowSelector1">
-        <select id="selectah">
-            <option value="Task">Tarea</option>
-            <option value="Event">Evento</option>
-        </select>
-      </div>
-   </div>
 </div>
-
-<!--Selector de Prioridad-->
-   
-<div class="containerPriori" style="background-color: yellow;">
-    <div class="rowSelector2">
-            <select id="priority">
-                <option value="High">Alta</option>
-                <option value="Medium">Media</option>
-                <option value="Low">Baja</option>
-            </select>
-        </div>
-    </div>
-
-<div class="containerBtnS" style="background-color: purple;">
-    <div class="rowS">
-            <button id= "btnSave"> Guardar</button>
-      </div>
-   </div>
-  <br>
-  <br>
-
-    <div class="containerT" style="background-color: blueviolet;">
-        <div id="listaTarea">
-            <h2>Tareas</h2>
-        </div>
-    </div>
-    <!--------------------------->
-    <div class="containerE" style="background-color: orange;">
-        <div id="listaEvento">
-            <h2>Eventos</h2>
-        </div>
-    </div>
-    
-   </div><!--Gridlayout-->
 <script src="../Proyecto-2-Js/src/js/scriptMainPage.js"></script>
 </body>
 </html>
