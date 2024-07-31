@@ -1,33 +1,72 @@
-body {
+body{
     background-color: aquamarine;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
 }
-
-.grid-layout {
+/*GridLayout:Fuente tutorial YT*/
+.grid-layout{
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto auto auto 1fr;
-    gap: 15px;
+    grid-template-columns: auto auto;
     width: 80%;
-    max-width: 800px;
+    height: 100%;
+    margin: 0 auto;
     background-color: pink;
-    padding: 20px;
     border: 1px solid black;
-    box-sizing: border-box;
-}
 
-.containerTE, .containerD, .containerSelector, .containerPriori, .containerBtnS, .containerT, .containerE {
+}
+.containerTE{
+    width: 180px;
+    height: 100px;
     border: 3px solid black;
-    padding: 10px;
-    box-sizing: border-box;
-    background-color: white;
+    margin: 15px;
+    text-align: center;
 }
 
-.containerT, .containerE {
-    height: 200px;
-
+.containerD{
+    width: 180px;
+    height: 100px;
+    border: 3px solid black;
+    margin: 15px;
+    text-align: center;
 }
+
+.containerSelector{
+    width: 30%;
+    height: 2cqh;
+    border: 3px solid black;
+    margin: 15px;
+    float: auto;
+}
+
+.containerPriori{
+    width: 30px;
+    height: 20px;
+    border: 3px solid black;
+    margin: 15px;
+    float: auto;
+}
+
+.containerBtnS{
+    width: 50px;
+    height: 50px;
+    border: 3px solid black;
+    margin: 15px;
+float: auto;
+}
+
+.containerT{
+    width: 180px;
+    height: 100px;
+    border: 3px solid black;
+    margin: 15px;
+    text-align: center;
+    float: auto;
+}
+
+.containerE{
+    width: 180px;
+    height: 100px;
+    border: 3px solid black;
+    margin: 15px;
+    text-align: center;
+    float: auto;
+}
+
