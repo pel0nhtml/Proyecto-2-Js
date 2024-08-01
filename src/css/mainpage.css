@@ -1,8 +1,27 @@
 body {
+    background-clip: url(/Proyecto-2-Js/img/b8be113fb9781955c74109cae1ea7890-webm_1080p.webm);
+    background-size: cover;
     font-family: Arial, sans-serif;
     justify-content: center ;
     margin: 0;
     padding: 0;
+}
+/*Background Video*/
+video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translateX(calc((100% - 100vw) / 2));
+    z-index: -2;
+  }
+.sectVideoBackground {
+    width: 100%;
+    min-height: 500px;
+}
+a{
+    text-decoration: none;
 }
 
 /* Grid Layout */
@@ -58,13 +77,13 @@ body {
     grid-template-columns:auto;
     justify-content: center;
     size-adjust: 30%;
-    background-color: orange;
+    background-color:whitesmoke;
 }
 
 .containerE {
     display: grid;
     grid-template-columns:auto;
-    background-color: orange;
+    background-color:whitesmoke;
 }
 
 h2 {
@@ -84,7 +103,7 @@ h2 {
     .containerSelector, .containerPriori, .containerBtnS {
         width: 100%;
         margin-bottom: 15px;
-        background-color: white;
+        
     }
 
     .containersTaskEvent{

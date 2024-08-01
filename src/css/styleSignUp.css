@@ -1,0 +1,20 @@
+body{
+    background-image: url(/Proyecto-2-Js/img/QS_0729_HP_Flip_Hero_Highline_Boardshorts-Desktop_f4bc1438-87dc-499e-a435-3b0de8b7eba2_2000x.webp);
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.containerBox {
+    background-color: rgba(115, 115, 115, 0.8); /*Fondo blanco */
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    max-width: 400px; 
+    width: 100%;
+    box-sizing: border-box;
+}
+

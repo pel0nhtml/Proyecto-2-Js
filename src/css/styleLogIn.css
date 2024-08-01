@@ -1,0 +1,74 @@
+body {
+    background-image: url(/Proyecto-2-Js/img/descarga.png);
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.containerA {
+    background-color: rgba(115, 115, 115, 0.8); /*Fondo blanco */
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    max-width: 400px; 
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.box1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1, h2 {
+    color: whitesmoke;
+    margin: 10px 0;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    background-color: whitesmoke;
+    color: rgb(53, 50, 50);
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: whitesmoke;
+}
+
+@media (max-width: 768px) {
+    .containerA {
+        padding: 15px;
+        max-width: 300px;
+    }
+
+    input, button {
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .containerA {
+        padding: 10px;
+        max-width: 100%;
+    }
+
+    input, button {
+        padding: 5px;
+    }
+}
