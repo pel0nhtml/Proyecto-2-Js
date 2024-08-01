@@ -1,6 +1,8 @@
 body {
-    background-color: aquamarine;
     font-family: Arial, sans-serif;
+    justify-content: center ;
+    margin: 0;
+    padding: 0;
 }
 
 /* Grid Layout */
@@ -10,50 +12,84 @@ body {
     gap: 15px;
     width: 90%;
     margin: 0 auto;
-    background-color: pink;
-    border: 1px solid black;
     padding: 20px;
+    
 }
 
-.containerTE, .containerD, .containerBtnS, .containerSelector, .containerPriori {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.containerTE, .containerBtnS, .containerSelector, .containerPriori {
+
     padding: 10px;
-    border: 3px solid black;
-    background-color: white;
-    margin-bottom: 15px;
+   
+
+}
+
+.containerTE {
+    justify-content: center ;
+    text-align: center;
+}
+
+.containerD {
+    justify-content: center;
+    text-align: center; 
+    
+}
+
+.containerSelector {
+    justify-content: center ;
+}
+
+.containerPriori {
+    justify-content: center ;
+}
+
+.containerBtnS {
+    justify-content: center ;
+    
 }
 
 .containerT, .containerE {
-    border: 3px solid black;
     padding: 10px;
     background-color: white;
     margin-bottom: 15px;
+}
+
+.containerT {
+    display: grid;
+    grid-template-columns:auto;
+    justify-content: center;
+    size-adjust: 30%;
+    background-color: orange;
+}
+
+.containerE {
+    display: grid;
+    grid-template-columns:auto;
+    background-color: orange;
 }
 
 h2 {
     text-align: center;
 }
 
-/* Responsividad usando media queries */
 @media (min-width: 768px) {
-    .grid-layout {
-        grid-template-columns: repeat(2, 1fr);
+    .containersTaskEvent {
+        grid-template-columns: 1fr;
     }
 
     .buttons {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 15px;
+        grid-template-columns: 1fr 1fr 1fr;
     }
 
-    .containersTask&Event {
-        display: flex;
-        justify-content: space-between;
+    .containerSelector, .containerPriori, .containerBtnS {
+        width: 100%;
+        margin-bottom: 15px;
+        background-color: white;
     }
 
-    .containerT, .containerE {
-        width: 45%;
+    .containersTaskEvent{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
     }
+
 }
